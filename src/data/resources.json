@@ -9,14 +9,26 @@
         "emoji": "🔢",
         "resources": [
           {
+            "title": "Nerckie — Matemática Básica",
+            "description": "Playlist completa de matemática básica, didática e direta ao ponto para quem quer uma base sólida.",
+            "url": "https://www.youtube.com/playlist?list=PL6846F4C75FFBA3EC",
+            "tag": "YouTube"
+          },
+          {
             "title": "Khan Academy — Matemática",
             "description": "Videoaulas e exercícios gratuitos do fundamental ao médio.",
             "url": "https://pt.khanacademy.org/math",
             "tag": "Videoaula"
           },
           {
+            "title": "Portal da Matemática — OBMEP",
+            "description": "Videoaulas gratuitas do 6º ano do ensino fundamental ao 3º ano do ensino médio, produzidas pela OBMEP.",
+            "url": "https://portaldaobmep.impa.br",
+            "tag": "Videoaula"
+          },
+          {
             "title": "Matemática Rio",
-            "description": "Canal no YouTube com aulas claras e didáticas para o ensino médio.",
+            "description": "Canal no YouTube com mais de 1.400 videoaulas para fundamental, médio e ENEM.",
             "url": "https://www.youtube.com/@matematicario",
             "tag": "YouTube"
           },
@@ -33,6 +45,12 @@
         "title": "Português",
         "emoji": "📝",
         "resources": [
+          {
+            "title": "Professor Noslen",
+            "description": "Aulas divertidas de gramática, literatura e produção de texto com paródias e exemplos criativos.",
+            "url": "https://www.youtube.com/@ProfessorNoslen",
+            "tag": "YouTube"
+          },
           {
             "title": "Khan Academy — Português",
             "description": "Gramática, redação e interpretação de texto.",
@@ -59,10 +77,22 @@
         "emoji": "🏛️",
         "resources": [
           {
+            "title": "Débora Aladim — História do Brasil",
+            "description": "Playlist completa de história do Brasil com linguagem acessível e envolvente para estudantes.",
+            "url": "https://www.youtube.com/playlist?list=PLIdiUrsoqaXOA7seQdd3AIygPL5SuPx5Y",
+            "tag": "YouTube"
+          },
+          {
             "title": "Khan Academy — História",
             "description": "História do Brasil e do mundo em videoaulas acessíveis.",
             "url": "https://pt.khanacademy.org/humanities/world-history",
             "tag": "Videoaula"
+          },
+          {
+            "title": "CinEstória",
+            "description": "Canal onde o cinema se mistura com a história, tornando os conteúdos mais envolventes.",
+            "url": "https://www.youtube.com/@CineHistoria",
+            "tag": "YouTube"
           },
           {
             "title": "Brasil Escola — História",
@@ -88,6 +118,12 @@
             "description": "Videoaulas sobre temas geográficos fundamentais.",
             "url": "https://pt.khanacademy.org/humanities/ap-human-geography",
             "tag": "Videoaula"
+          },
+          {
+            "title": "Minuto da Terra",
+            "description": "Vídeos curtos e ilustrados sobre ciência, meio ambiente e o funcionamento do nosso planeta.",
+            "url": "https://www.youtube.com/@MinutodaTerra",
+            "tag": "YouTube"
           }
         ]
       },
@@ -96,6 +132,12 @@
         "title": "Ciências",
         "emoji": "🔬",
         "resources": [
+          {
+            "title": "Ciência Todo Dia",
+            "description": "Física, química, biologia e curiosidades científicas explicadas de forma clara e envolvente.",
+            "url": "https://www.youtube.com/@CienciaTodoDia",
+            "tag": "YouTube"
+          },
           {
             "title": "Khan Academy — Ciências",
             "description": "Biologia, química, física e ciências da terra.",
@@ -134,7 +176,7 @@
             "tag": "Curso"
           },
           {
-            "title": "Fundação Bradesco — Informática",
+            "title": "Fundação Bradesco — Escola Virtual",
             "description": "Cursos gratuitos de informática com certificado.",
             "url": "https://www.ev.org.br",
             "tag": "Curso"
