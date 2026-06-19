@@ -1,0 +1,228 @@
+{
+  "educacao": {
+    "title": "Educação",
+    "description": "Recursos gratuitos organizados por disciplina para estudantes da educação básica.",
+    "subjects": [
+      {
+        "id": "matematica",
+        "title": "Matemática",
+        "emoji": "🔢",
+        "resources": [
+          {
+            "title": "Khan Academy — Matemática",
+            "description": "Videoaulas e exercícios gratuitos do fundamental ao médio.",
+            "url": "https://pt.khanacademy.org/math",
+            "tag": "Videoaula"
+          },
+          {
+            "title": "Matemática Rio",
+            "description": "Canal no YouTube com aulas claras e didáticas para o ensino médio.",
+            "url": "https://www.youtube.com/@matematicario",
+            "tag": "YouTube"
+          },
+          {
+            "title": "Só Matemática",
+            "description": "Exercícios, fórmulas e teoria organizados por tema.",
+            "url": "https://www.somatematica.com.br",
+            "tag": "Exercícios"
+          }
+        ]
+      },
+      {
+        "id": "portugues",
+        "title": "Português",
+        "emoji": "📝",
+        "resources": [
+          {
+            "title": "Khan Academy — Português",
+            "description": "Gramática, redação e interpretação de texto.",
+            "url": "https://pt.khanacademy.org/humanities/grammar",
+            "tag": "Videoaula"
+          },
+          {
+            "title": "Norma Culta",
+            "description": "Guia completo de gramática e dúvidas da língua portuguesa.",
+            "url": "https://www.normaculta.com.br",
+            "tag": "Referência"
+          },
+          {
+            "title": "Descomplica — Português",
+            "description": "Aulas gratuitas de português para o ensino médio e ENEM.",
+            "url": "https://descomplica.com.br/materia/portugues",
+            "tag": "Videoaula"
+          }
+        ]
+      },
+      {
+        "id": "historia",
+        "title": "História",
+        "emoji": "🏛️",
+        "resources": [
+          {
+            "title": "Khan Academy — História",
+            "description": "História do Brasil e do mundo em videoaulas acessíveis.",
+            "url": "https://pt.khanacademy.org/humanities/world-history",
+            "tag": "Videoaula"
+          },
+          {
+            "title": "Brasil Escola — História",
+            "description": "Artigos, resumos e exercícios sobre história geral e do Brasil.",
+            "url": "https://brasilescola.uol.com.br/historia",
+            "tag": "Artigos"
+          }
+        ]
+      },
+      {
+        "id": "geografia",
+        "title": "Geografia",
+        "emoji": "🌎",
+        "resources": [
+          {
+            "title": "Brasil Escola — Geografia",
+            "description": "Conteúdos completos de geografia física e humana.",
+            "url": "https://brasilescola.uol.com.br/geografia",
+            "tag": "Artigos"
+          },
+          {
+            "title": "Khan Academy — Geografia",
+            "description": "Videoaulas sobre temas geográficos fundamentais.",
+            "url": "https://pt.khanacademy.org/humanities/ap-human-geography",
+            "tag": "Videoaula"
+          }
+        ]
+      },
+      {
+        "id": "ciencias",
+        "title": "Ciências",
+        "emoji": "🔬",
+        "resources": [
+          {
+            "title": "Khan Academy — Ciências",
+            "description": "Biologia, química, física e ciências da terra.",
+            "url": "https://pt.khanacademy.org/science",
+            "tag": "Videoaula"
+          },
+          {
+            "title": "Brasil Escola — Biologia",
+            "description": "Artigos e resumos de biologia para o ensino médio.",
+            "url": "https://brasilescola.uol.com.br/biologia",
+            "tag": "Artigos"
+          },
+          {
+            "title": "Brasil Escola — Química",
+            "description": "Conteúdos de química organizados por tema.",
+            "url": "https://brasilescola.uol.com.br/quimica",
+            "tag": "Artigos"
+          }
+        ]
+      }
+    ]
+  },
+  "tecnologia": {
+    "title": "Tecnologia",
+    "description": "Aprenda a usar a tecnologia como ferramenta de estudo e desenvolvimento pessoal.",
+    "subjects": [
+      {
+        "id": "informatica-basica",
+        "title": "Informática Básica",
+        "emoji": "🖥️",
+        "resources": [
+          {
+            "title": "GCFGlobal — Informática",
+            "description": "Curso gratuito de informática básica em português.",
+            "url": "https://edu.gcfglobal.org/pt/informaticabasica",
+            "tag": "Curso"
+          },
+          {
+            "title": "Fundação Bradesco — Informática",
+            "description": "Cursos gratuitos de informática com certificado.",
+            "url": "https://www.ev.org.br",
+            "tag": "Curso"
+          }
+        ]
+      },
+      {
+        "id": "internet",
+        "title": "Internet",
+        "emoji": "🌐",
+        "resources": [
+          {
+            "title": "GCFGlobal — Internet",
+            "description": "Como usar a internet de forma eficiente e segura.",
+            "url": "https://edu.gcfglobal.org/pt/internetbasico",
+            "tag": "Curso"
+          },
+          {
+            "title": "Web.dev — Fundamentos",
+            "description": "Como a web funciona, explicado de forma acessível.",
+            "url": "https://web.dev/learn",
+            "tag": "Leitura"
+          }
+        ]
+      },
+      {
+        "id": "seguranca-digital",
+        "title": "Segurança Digital",
+        "emoji": "🔒",
+        "resources": [
+          {
+            "title": "Cartilha de Segurança — CERT.br",
+            "description": "Guia oficial brasileiro sobre segurança na internet.",
+            "url": "https://cartilha.cert.br",
+            "tag": "Guia"
+          },
+          {
+            "title": "SaferNet Brasil",
+            "description": "Dicas e recursos para uso seguro e consciente da internet.",
+            "url": "https://new.safernet.org.br",
+            "tag": "Guia"
+          }
+        ]
+      },
+      {
+        "id": "ferramentas",
+        "title": "Ferramentas de Produtividade",
+        "emoji": "🛠️",
+        "resources": [
+          {
+            "title": "GCFGlobal — Google Drive",
+            "description": "Aprenda a usar Docs, Planilhas e Apresentações gratuitamente.",
+            "url": "https://edu.gcfglobal.org/pt/google-drive-e-docs",
+            "tag": "Curso"
+          },
+          {
+            "title": "Suporte do Google Workspace",
+            "description": "Tutoriais oficiais das ferramentas Google para estudantes.",
+            "url": "https://support.google.com/a/users",
+            "tag": "Tutorial"
+          }
+        ]
+      },
+      {
+        "id": "programacao",
+        "title": "Introdução à Programação",
+        "emoji": "💡",
+        "resources": [
+          {
+            "title": "Khan Academy — Programação",
+            "description": "Introdução à programação com JavaScript de forma visual.",
+            "url": "https://pt.khanacademy.org/computing/computer-programming",
+            "tag": "Curso"
+          },
+          {
+            "title": "Scratch",
+            "description": "Aprenda lógica de programação de forma visual e divertida.",
+            "url": "https://scratch.mit.edu",
+            "tag": "Prática"
+          },
+          {
+            "title": "Curso em Vídeo — Python",
+            "description": "Curso gratuito de Python em português para iniciantes.",
+            "url": "https://www.cursoemvideo.com/curso/python-3-mundo-1",
+            "tag": "Curso"
+          }
+        ]
+      }
+    ]
+  }
+}
