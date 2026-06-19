@@ -1,0 +1,63 @@
+---
+const year = new Date().getFullYear();
+
+const sections = [
+  {
+    title: 'Conteúdo',
+    links: [
+      { href: '/educacao', label: 'Educação' },
+      { href: '/tecnologia', label: 'Tecnologia' },
+      { href: '/guias', label: 'Guias' },
+    ],
+  },
+  {
+    title: 'Projeto',
+    links: [
+      { href: '/sobre', label: 'Sobre o EduConecta' },
+    ],
+  },
+];
+---
+
+<footer class="bg-gray-900 text-gray-300 mt-auto">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+      <!-- Identidade -->
+      <div class="md:col-span-1">
+        <a href="/" class="flex items-center gap-2 font-bold text-xl text-white mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+          EduConecta
+        </a>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Conectando estudantes a recursos educacionais gratuitos de qualidade.
+        </p>
+      </div>
+
+      <!-- Links -->
+      {sections.map(({ title, links }) => (
+        <div>
+          <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">
+            {title}
+          </h3>
+          <ul class="space-y-2">
+            {links.map(({ href, label }) => (
+              <li>
+                <a href={href} class="text-sm text-gray-400 hover:text-white transition-colors">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+      <p>© {year} EduConecta — Conteúdo gratuito para todos.</p>
+    </div>
+  </div>
+</footer>

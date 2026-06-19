@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    href: '/educacao',
+    emoji: '📚',
+    title: 'Educação',
+    description: 'Matemática, Português, História, Geografia, Ciências e mais.',
+    color: 'bg-blue-50 hover:bg-blue-100 border-blue-100',
+    titleColor: 'text-blue-700',
+  },
+  {
+    href: '/tecnologia',
+    emoji: '💻',
+    title: 'Tecnologia',
+    description: 'Informática básica, internet, segurança digital e programação.',
+    color: 'bg-green-50 hover:bg-green-100 border-green-100',
+    titleColor: 'text-green-700',
+  },
+  {
+    href: '/guias',
+    emoji: '🗺️',
+    title: 'Guias',
+    description: 'Como estudar melhor, organizar rotinas e usar a tecnologia a seu favor.',
+    color: 'bg-purple-50 hover:bg-purple-100 border-purple-100',
+    titleColor: 'text-purple-700',
+  },
+];
+---
+
+<BaseLayout title="EduConecta" description="Plataforma gratuita que conecta estudantes a recursos educacionais de qualidade.">
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-primary-50 to-white py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <span class="inline-block bg-primary-100 text-primary-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
+        100% Gratuito
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+        Aprendizado acessível para <span class="text-primary-600">todos</span>
+      </h1>
+      <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+        Encontre recursos educacionais gratuitos, guias práticos e materiais de tecnologia reunidos em um só lugar.
+      </p>
+      <a
+        href="/educacao"
+        class="inline-block bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors shadow-sm"
+      >
+        Explorar conteúdos
+      </a>
+    </div>
+  </section>
+
+  <!-- Cards de seção -->
+  <section class="max-w-6xl mx-auto px-4 py-16" aria-labelledby="sections-title">
+    <h2 id="sections-title" class="text-2xl font-bold text-gray-900 text-center mb-10">
+      O que você encontra aqui
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {sections.map(({ href, emoji, title, description, color, titleColor }) => (
+        <a
+          href={href}
+          class:list={[
+            'flex flex-col gap-3 p-6 rounded-2xl border transition-colors',
+            color
+          ]}
+        >
+          <span class="text-4xl" role="img" aria-hidden="true">{emoji}</span>
+          <h3 class:list={['text-lg font-bold', titleColor]}>{title}</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">{description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Missão -->
+  <section class="bg-gray-50 border-t border-gray-100 py-16 px-4 text-center">
+    <div class="max-w-xl mx-auto">
+      <p class="text-gray-500 text-sm uppercase tracking-widest font-semibold mb-3">Nossa missão</p>
+      <blockquote class="text-xl font-medium text-gray-800 leading-relaxed">
+        "Nenhum estudante deve deixar de aprender por falta de acesso a bons recursos."
+      </blockquote>
+      <a href="/sobre" class="inline-block mt-6 text-sm text-primary-600 hover:text-primary-700 font-medium underline underline-offset-4">
+        Saiba mais sobre o projeto →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
