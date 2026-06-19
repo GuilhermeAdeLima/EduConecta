@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://educonecta.pages.dev/sitemap-index.xml
+Sitemap: https://guilhermeadelima.github.io/EduConecta/sitemap-index.xml
