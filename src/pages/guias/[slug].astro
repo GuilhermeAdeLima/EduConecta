@@ -1,6 +1,120 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProseContent from '@/components/ProseContent.astro';
+
+// Gera uma página estática para cada guia da content collection.
+// Obrigatório em rotas dinâmicas quando output: 'static'.
+export async function getStaticPaths() {
+  const guias = await getCollection('guias');
+
+  return guias.map((guia) => ({
+    params: { slug: guia.slug },
+    props: { guia },
+  }));
+}
+
+interface Props {
+  guia: CollectionEntry<'guias'>;
+}
+
+const { guia } = Astro.props;
+const { title, description, pubDate, updatedDate, category, tags, readingTime } = guia.data;
+
+// Renderiza o conteúdo Markdown
+const { Content } = await guia.render();
+
+const categoryConfig: Record<string, { label: string; class: string }> = {
+  educacao:   { label: 'Educação',   class: 'bg-blue-100 text-blue-700' },
+  tecnologia: { label: 'Tecnologia', class: 'bg-green-100 text-green-700' },
+  dicas:      { label: 'Dicas',      class: 'bg-yellow-100 text-yellow-700' },
+};
+
+const cat = categoryConfig[category] ?? { label: category, class: 'bg-gray-100 text-gray-700' };
+
+const formattedDate = pubDate.toLocaleDateString('pt-BR', {
+  day: '2-digit', month: 'long', year: 'numeric',
+});
+
+const formattedUpdated = updatedDate?.toLocaleDateString('pt-BR', {
+  day: '2-digit', month: 'long', year: 'numeric',
+});
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
 <BaseLayout
   title={title}
   description={description}
   type="article"
   pubDate={pubDate}
 >
+  <article class="max-w-3xl mx-auto px-4 py-12">
+
+    <!-- Migalha de navegação -->
+    <nav class="mb-8 text-sm text-gray-500" aria-label="Você está em">
+      <a href={`${base}/`} class="hover:text-primary-600 transition-colors">Início</a>
+      <span class="mx-1.5" aria-hidden="true">/</span>
+      <a href={`${base}/guias`} class="hover:text-primary-600 transition-colors">Guias</a>
+      <span class="mx-1.5" aria-hidden="true">/</span>
+      <span class="text-gray-700">{title}</span>
+    </nav>
+
+    <!-- Cabeçalho do artigo -->
+    <header class="mb-10 border-b border-gray-100 pb-8">
+      <div class="flex items-center gap-2 flex-wrap mb-4">
+        <span class:list={['text-xs font-medium px-2 py-0.5 rounded-full', cat.class]}>
+          {cat.label}
+        </span>
+        {guia.data.featured && (
+          <span class="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
+            ⭐ Destaque
+          </span>
+        )}
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
+        {title}
+      </h1>
+
+      <p class="text-lg text-gray-600 leading-relaxed mb-5">{description}</p>
+
+      <div class="flex items-center gap-3 text-sm text-gray-400 flex-wrap">
+        <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        {readingTime && (
+          <span>· {readingTime} min de leitura</span>
+        )}
+        {formattedUpdated && (
+          <span>· Atualizado em {formattedUpdated}</span>
+        )}
+      </div>
+    </header>
+
+    <!-- Conteúdo Markdown renderizado -->
+    <ProseContent>
+      <Content />
+    </ProseContent>
+
+    <!-- Tags -->
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 mt-10 pt-8 border-t border-gray-100">
+        {tags.map((tag) => (
+          <span class="text-xs text-gray-400 bg-gray-50 border border-gray-100 px-2 py-0.5 rounded-full">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- Voltar -->
+    <div class="mt-10">
+      <a
+        href={`${base}/guias`}
+        class="inline-flex items-center gap-1.5 text-sm text-primary-600 hover:text-primary-800 font-medium transition-colors"
+      >
+        ← Voltar para todos os guias
+      </a>
+    </div>
+
+  </article>
+</BaseLayout>
