@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GuiaCard from '@/components/GuiaCard.astro';
+
+const allGuias = await getCollection('guias');
+
+// Ordenação: destaques primeiro, depois por data decrescente
+const guias = allGuias.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+});
+
+const featured = guias.filter((g) => g.data.featured);
+const outros   = guias.filter((g) => !g.data.featured);
+
+const categories = [
+  { id: 'todos',      label: 'Todos'      },
+  { id: 'educacao',   label: 'Educação'   },
+  { id: 'tecnologia', label: 'Tecnologia' },
+  { id: 'dicas',      label: 'Dicas'      },
+];
+---
+
+<BaseLayout
+  title="Guias"
+  description="Guias práticos para estudar melhor, usar ferramentas digitais e aproveitar ao máximo os recursos educacionais gratuitos."
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+
+    <!-- Cabeçalho -->
+    <header class="mb-10">
+      <p class="text-primary-600 text-sm font-semibold uppercase tracking-wide mb-1">Leitura</p>
+      <h1 class="text-3xl font-bold text-gray-900 mb-3">Guias</h1>
+      <p class="text-gray-600 max-w-2xl">
+        Guias práticos para estudar melhor, usar ferramentas digitais e aproveitar os recursos gratuitos disponíveis.
+      </p>
+    </header>
+
+    <!-- Filtro por categoria (JS progressivo) -->
+    <nav class="flex flex-wrap gap-2 mb-10" aria-label="Filtrar por categoria" id="category-nav">
+      {categories.map(({ id, label }) => (
+        <button
+          type="button"
+          data-category={id}
+          class:list={[
+            'text-sm px-3 py-1.5 rounded-full border transition-colors',
+            id === 'todos'
+              ? 'border-primary-500 bg-primary-50 text-primary-700 font-medium'
+              : 'border-gray-200 text-gray-600 hover:border-primary-400 hover:text-primary-700',
+          ]}
+          aria-pressed={id === 'todos' ? 'true' : 'false'}
+        >
+          {label}
+        </button>
+      ))}
+    </nav>
+
+    <!-- Destaques -->
+    {featured.length > 0 && (
+      <section class="mb-12" id="section-featured" data-section="featured">
+        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4">Em destaque</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {featured.map((guia) => (
+            <div data-card-category={guia.data.category}>
+              <GuiaCard
+                slug={guia.slug}
+                {...guia.data}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Todos os guias -->
+    {outros.length > 0 && (
+      <section id="section-outros" data-section="outros">
+        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4">Todos os guias</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {outros.map((guia) => (
+            <div data-card-category={guia.data.category}>
+              <GuiaCard
+                slug={guia.slug}
+                {...guia.data}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Estado vazio -->
+    <p id="empty-state" class="hidden text-center text-gray-400 py-16 text-sm">
+      Nenhum guia encontrado nessa categoria ainda.
+    </p>
+
+  </div>
+</BaseLayout>
+
+<script>
+  const nav   = document.getElementById('category-nav');
+  const cards = document.querySelectorAll<HTMLElement>('[data-card-category]');
+  const empty = document.getElementById('empty-state');
+
+  nav?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-category]');
+    if (!btn) return;
+
+    const selected = btn.dataset.category ?? 'todos';
+
+    // Atualiza botões
+    nav.querySelectorAll<HTMLButtonElement>('[data-category]').forEach((b) => {
+      const active = b.dataset.category === selected;
+      b.setAttribute('aria-pressed', String(active));
+      b.classList.toggle('border-primary-500', active);
+      b.classList.toggle('bg-primary-50',      active);
+      b.classList.toggle('text-primary-700',   active);
+      b.classList.toggle('font-medium',        active);
+      b.classList.toggle('border-gray-200',    !active);
+      b.classList.toggle('text-gray-600',      !active);
+    });
+
+    // Filtra cards
+    let visible = 0;
+    cards.forEach((card) => {
+      const show = selected === 'todos' || card.dataset.cardCategory === selected;
+      card.hidden = !show;
+      if (show) visible++;
+    });
+
+    // Seções vazias
+    document.querySelectorAll<HTMLElement>('[data-section]').forEach((section) => {
+      const sectionCards = section.querySelectorAll<HTMLElement>('[data-card-category]:not([hidden])');
+      section.hidden = sectionCards.length === 0;
+    });
+
+    if (empty) empty.classList.toggle('hidden', visible > 0);
+  });

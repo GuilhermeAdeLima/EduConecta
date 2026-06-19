@@ -3,15 +3,15 @@ WORKDIR /app
 
 # Dependências
 FROM base AS deps
+
 COPY package.json ./
 RUN npm install
-
 # Desenvolvimento
 FROM base AS dev
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 EXPOSE 4321
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+CMD ["npm", "run", "dev"]
 
 # Build de produção
 FROM base AS builder
@@ -25,4 +25,4 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY package.json ./
 EXPOSE 4321
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]
+CMD ["npm", "run", "preview"]
