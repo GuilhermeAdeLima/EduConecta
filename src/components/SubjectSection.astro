@@ -1,0 +1,31 @@
+---
+import ResourceCard from '@/components/ResourceCard.astro';
+
+interface Resource {
+  title: string;
+  description: string;
+  url: string;
+  tag: string;
+}
+
+interface Props {
+  id: string;
+  emoji: string;
+  title: string;
+  resources: Resource[];
+}
+
+const { id, emoji, title, resources } = Astro.props;
+---
+
+<section id={id} class="scroll-mt-20" aria-labelledby={`heading-${id}`}>
+  <div class="flex items-center gap-3 mb-5">
+    <span class="text-3xl" role="img" aria-hidden="true">{emoji}</span>
+    <h2 id={`heading-${id}`} class="text-xl font-bold text-gray-900">{title}</h2>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {resources.map((resource) => (
+      <ResourceCard {...resource} />
+    ))}
+  </div>
+</section>
