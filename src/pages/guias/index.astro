@@ -5,136 +5,197 @@ import GuiaCard from '@/components/GuiaCard.astro';
 
 const allGuias = await getCollection('guias');
 
-// Ordenação: destaques primeiro, depois por data decrescente
-const guias = allGuias.sort((a, b) => {
-  if (a.data.featured && !b.data.featured) return -1;
-  if (!a.data.featured && b.data.featured) return 1;
-  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
-});
+const featuredGuias = allGuias
+  .filter((g) => g.data.featured)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 4);
 
-const featured = guias.filter((g) => g.data.featured);
-const outros   = guias.filter((g) => !g.data.featured);
+const quickLinks = [
+  {
+    href:        '/educacao',
+    emoji:       '📚',
+    title:       'Educação',
+    description: 'Matemática, História, Português, Ciências e muito mais.',
+    color:       'bg-blue-50 border-blue-200 hover:border-blue-400',
+    titleColor:  'text-blue-800',
+  },
+  {
+    href:        '/tecnologia',
+    emoji:       '💻',
+    title:       'Tecnologia',
+    description: 'Programação, ferramentas digitais e habilidades do futuro.',
+    color:       'bg-green-50 border-green-200 hover:border-green-400',
+    titleColor:  'text-green-800',
+  },
+  {
+    href:        '/guias',
+    emoji:       '🗺️',
+    title:       'Guias',
+    description: 'Aprenda a estudar melhor e usar os recursos disponíveis.',
+    color:       'bg-yellow-50 border-yellow-200 hover:border-yellow-400',
+    titleColor:  'text-yellow-800',
+  },
+];
 
-const categories = [
-  { id: 'todos',      label: 'Todos'      },
-  { id: 'educacao',   label: 'Educação'   },
-  { id: 'tecnologia', label: 'Tecnologia' },
-  { id: 'dicas',      label: 'Dicas'      },
+const stats = [
+  { value: '100%', label: 'Gratuito' },
+  { value: '0',    label: 'Cadastros necessários' },
+  { value: '∞',    label: 'Vontade de aprender' },
 ];
 ---
 
 <BaseLayout
-  title="Guias"
-  description="Guias práticos para estudar melhor, usar ferramentas digitais e aproveitar ao máximo os recursos educacionais gratuitos."
+  title="Início"
+  description="EduConecta — recursos educacionais gratuitos para estudantes do ensino básico e jovens com acesso limitado à educação de qualidade."
 >
-  <div class="max-w-5xl mx-auto px-4 py-12">
 
-    <!-- Cabeçalho -->
-    <header class="mb-10">
-      <p class="text-primary-600 text-sm font-semibold uppercase tracking-wide mb-1">Leitura</p>
-      <h1 class="text-3xl font-bold text-gray-900 mb-3">Guias</h1>
-      <p class="text-gray-600 max-w-2xl">
-        Guias práticos para estudar melhor, usar ferramentas digitais e aproveitar os recursos gratuitos disponíveis.
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="bg-gradient-to-b from-primary-50 to-white border-b border-primary-100">
+    <div class="max-w-5xl mx-auto px-4 py-16 sm:py-24 text-center">
+
+      <span class="inline-block text-4xl mb-4" aria-hidden="true">🎓</span>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+        Educação gratuita<br class="hidden sm:block" />
+        <span class="text-primary-600">para todo mundo</span>
+      </h1>
+
+      <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+        O EduConecta reúne os melhores recursos educacionais gratuitos da internet —
+        vídeos, plataformas, guias e ferramentas — em um só lugar, simples e acessível.
       </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href="/guias"
+          class="inline-flex items-center gap-2 bg-primary-600 text-white text-sm font-semibold px-5 py-3 rounded-xl hover:bg-primary-700 transition-colors shadow-sm"
+        >
+          📖 Ver guias
+        </a>
+        <a
+          href="/educacao"
+          class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-3 rounded-xl hover:border-primary-400 hover:text-primary-700 transition-colors"
+        >
+          📚 Explorar recursos
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS
+  ============================================================ -->
+  <section class="bg-white border-b border-gray-100" aria-label="Destaques do EduConecta">
+    <div class="max-w-5xl mx-auto px-4 py-8">
+      <ul class="grid grid-cols-3 gap-4 text-center" role="list">
+        {stats.map(({ value, label }) => (
+          <li class="flex flex-col gap-0.5">
+            <span class="text-2xl sm:text-3xl font-extrabold text-primary-600">{value}</span>
+            <span class="text-xs sm:text-sm text-gray-500">{label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ACESSO RÁPIDO
+  ============================================================ -->
+  <section class="max-w-5xl mx-auto px-4 py-14">
+
+    <header class="mb-8">
+      <p class="text-primary-600 text-sm font-semibold uppercase tracking-wide mb-1">Explorar</p>
+      <h2 class="text-2xl font-bold text-gray-900">Por onde começar?</h2>
     </header>
 
-    <!-- Filtro por categoria (JS progressivo) -->
-    <nav class="flex flex-wrap gap-2 mb-10" aria-label="Filtrar por categoria" id="category-nav">
-      {categories.map(({ id, label }) => (
-        <button
-          type="button"
-          data-category={id}
-          class:list={[
-            'text-sm px-3 py-1.5 rounded-full border transition-colors',
-            id === 'todos'
-              ? 'border-primary-500 bg-primary-50 text-primary-700 font-medium'
-              : 'border-gray-200 text-gray-600 hover:border-primary-400 hover:text-primary-700',
-          ]}
-          aria-pressed={id === 'todos' ? 'true' : 'false'}
-        >
-          {label}
-        </button>
+    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4" role="list">
+      {quickLinks.map(({ href, emoji, title, description, color, titleColor }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'flex flex-col gap-2 p-5 rounded-2xl border transition-all hover:shadow-md h-full',
+              color,
+            ]}
+          >
+            <span class="text-3xl" aria-hidden="true">{emoji}</span>
+            <span class:list={['text-base font-bold', titleColor]}>{title}</span>
+            <span class="text-sm text-gray-600 leading-relaxed">{description}</span>
+          </a>
+        </li>
       ))}
-    </nav>
+    </ul>
 
-    <!-- Destaques -->
-    {featured.length > 0 && (
-      <section class="mb-12" id="section-featured" data-section="featured">
-        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4">Em destaque</h2>
+  </section>
+
+  <!-- ============================================================
+       GUIAS EM DESTAQUE
+  ============================================================ -->
+  {featuredGuias.length > 0 && (
+    <section class="bg-gray-50 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-4 py-14">
+
+        <header class="flex items-end justify-between mb-8 gap-4 flex-wrap">
+          <div>
+            <p class="text-primary-600 text-sm font-semibold uppercase tracking-wide mb-1">Leitura</p>
+            <h2 class="text-2xl font-bold text-gray-900">Guias em destaque</h2>
+          </div>
+          <a
+            href="/guias"
+            class="text-sm text-primary-600 hover:text-primary-800 font-medium transition-colors whitespace-nowrap"
+            aria-label="Ver todos os guias disponíveis"
+          >
+            Ver todos →
+          </a>
+        </header>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {featured.map((guia) => (
-            <div data-card-category={guia.data.category}>
-              <GuiaCard
-                slug={guia.slug}
-                {...guia.data}
-              />
-            </div>
+          {featuredGuias.map((guia) => (
+            <GuiaCard
+              slug={guia.slug}
+              {...guia.data}
+            />
           ))}
         </div>
-      </section>
-    )}
 
-    <!-- Todos os guias -->
-    {outros.length > 0 && (
-      <section id="section-outros" data-section="outros">
-        <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4">Todos os guias</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {outros.map((guia) => (
-            <div data-card-category={guia.data.category}>
-              <GuiaCard
-                slug={guia.slug}
-                {...guia.data}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
+      </div>
+    </section>
+  )}
 
-    <!-- Estado vazio -->
-    <p id="empty-state" class="hidden text-center text-gray-400 py-16 text-sm">
-      Nenhum guia encontrado nessa categoria ainda.
-    </p>
+  <!-- ============================================================
+       CALL TO ACTION
+  ============================================================ -->
+  <section class="border-t border-gray-100">
+    <div class="max-w-3xl mx-auto px-4 py-16 text-center">
 
-  </div>
+      <span class="text-4xl mb-4 inline-block" aria-hidden="true">🚀</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+        Pronto para começar?
+      </h2>
+      <p class="text-gray-500 mb-8 leading-relaxed">
+        Todo o conteúdo é gratuito, sem cadastro e sem pegadinha.
+        Escolha por onde quer começar e boa sorte nos estudos!
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href="/educacao"
+          class="inline-flex items-center gap-2 bg-primary-600 text-white text-sm font-semibold px-5 py-3 rounded-xl hover:bg-primary-700 transition-colors shadow-sm"
+        >
+          📚 Recursos de Educação
+        </a>
+        <a
+          href="/tecnologia"
+          class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-5 py-3 rounded-xl hover:border-primary-400 hover:text-primary-700 transition-colors"
+        >
+          💻 Recursos de Tecnologia
+        </a>
+      </div>
+
+    </div>
+  </section>
+
 </BaseLayout>
-
-<script>
-  const nav   = document.getElementById('category-nav');
-  const cards = document.querySelectorAll<HTMLElement>('[data-card-category]');
-  const empty = document.getElementById('empty-state');
-
-  nav?.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-category]');
-    if (!btn) return;
-
-    const selected = btn.dataset.category ?? 'todos';
-
-    // Atualiza botões
-    nav.querySelectorAll<HTMLButtonElement>('[data-category]').forEach((b) => {
-      const active = b.dataset.category === selected;
-      b.setAttribute('aria-pressed', String(active));
-      b.classList.toggle('border-primary-500', active);
-      b.classList.toggle('bg-primary-50',      active);
-      b.classList.toggle('text-primary-700',   active);
-      b.classList.toggle('font-medium',        active);
-      b.classList.toggle('border-gray-200',    !active);
-      b.classList.toggle('text-gray-600',      !active);
-    });
-
-    // Filtra cards
-    let visible = 0;
-    cards.forEach((card) => {
-      const show = selected === 'todos' || card.dataset.cardCategory === selected;
-      card.hidden = !show;
-      if (show) visible++;
-    });
-
-    // Seções vazias
-    document.querySelectorAll<HTMLElement>('[data-section]').forEach((section) => {
-      const sectionCards = section.querySelectorAll<HTMLElement>('[data-card-category]:not([hidden])');
-      section.hidden = sectionCards.length === 0;
-    });
-
-    if (empty) empty.classList.toggle('hidden', visible > 0);
-  });
