@@ -4,8 +4,8 @@ WORKDIR /app
 # Dependências
 FROM base AS deps
 
-COPY package.json ./
-RUN npm install
+COPY package.json package-lock.json* ./
+RUN npm ci
 # Desenvolvimento
 FROM base AS dev
 COPY --from=deps /app/node_modules ./node_modules
