@@ -5,7 +5,7 @@ WORKDIR /app
 FROM base AS deps
 
 COPY package.json package-lock.json* ./
-RUN npm install
+RUN npm ci
 # Desenvolvimento
 FROM base AS dev
 COPY --from=deps /app/node_modules ./node_modules
