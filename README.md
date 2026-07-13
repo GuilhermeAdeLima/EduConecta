@@ -14,3 +14,4 @@ da educação básica, com foco em acessibilidade e simplicidade.
 
 ```bash
 docker compose up
+```
