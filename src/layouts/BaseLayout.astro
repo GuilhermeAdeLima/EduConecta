@@ -68,9 +68,9 @@ const navLinks = [
   <meta name="twitter:image"       content={ogImage} />
 
   <!-- Favicon -->
-  <link rel="icon"             href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon"             href="/favicon.ico" sizes="any" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon"             href={`${base}/favicon.svg`} type="image/svg+xml" />
+  <link rel="icon"             href={`${base}/favicon.ico`} sizes="any" />
+  <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
 
   <!-- Fontes do sistema — zero request externo -->
   <style>
@@ -98,7 +98,7 @@ const navLinks = [
     <!-- Header padrão inline para evitar import circular -->
     <header class="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm">
       <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        <a href="/" class="flex items-center gap-2 font-extrabold text-lg text-primary-700 hover:text-primary-900 transition-colors" aria-label="EduConecta — página inicial">
+        <a href={base} class="flex items-center gap-2 font-extrabold text-lg text-primary-700 hover:text-primary-900 transition-colors" aria-label="EduConecta — página inicial">
           <span aria-hidden="true">🎓</span> EduConecta
         </a>
 
@@ -170,7 +170,7 @@ const navLinks = [
     <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
       <p>
         © {new Date().getFullYear()} EduConecta —
-        <a href="/sobre" class="hover:text-primary-600 transition-colors">Sobre o projeto</a>
+        <a href={`${base}/sobre`} class="hover:text-primary-600 transition-colors">Sobre o projeto</a>
       </p>
       <a
         href="https://github.com/GuilhermeAdeLima/EduConecta"

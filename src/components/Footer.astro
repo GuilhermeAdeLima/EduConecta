@@ -1,19 +1,20 @@
 ---
 const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const sections = [
   {
     title: 'Conteúdo',
     links: [
-      { href: '/educacao', label: 'Educação' },
-      { href: '/tecnologia', label: 'Tecnologia' },
-      { href: '/guias', label: 'Guias' },
+      { href: `${base}/educacao`, label: 'Educação' },
+      { href: `${base}/tecnologia`, label: 'Tecnologia' },
+      { href: `${base}/guias`, label: 'Guias' },
     ],
   },
   {
     title: 'Projeto',
     links: [
-      { href: '/sobre', label: 'Sobre o EduConecta' },
+      { href: `${base}/sobre`, label: 'Sobre o EduConecta' },
     ],
   },
 ];
@@ -25,7 +26,7 @@ const sections = [
 
       <!-- Identidade -->
       <div class="md:col-span-1">
-        <a href="/" class="flex items-center gap-2 font-bold text-xl text-white mb-3">
+        <a href={base} class="flex items-center gap-2 font-bold text-xl text-white mb-3">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
             <path d="M6 12v5c3 3 9 3 12 0v-5"/>

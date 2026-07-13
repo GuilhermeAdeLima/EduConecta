@@ -1,0 +1,27 @@
+# Astro
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Agent-specific
+.abacusai/
+AGENTS.md
