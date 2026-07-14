@@ -1,0 +1,6 @@
+# Âncoras de fragmento — não verificáveis em modo offline
+^#
+
+# Schemes que não são links de arquivo
+^mailto:
+^tel:
