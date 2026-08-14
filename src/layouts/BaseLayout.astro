@@ -21,7 +21,7 @@ const siteUrl   = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const canonical = new URL(Astro.url.pathname, siteUrl).toString();
 const ogImage   = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
-const siteName  = 'EduConecta';
+const siteName  = 'Educação Acessível';
 const fullTitle = title === 'Início' ? siteName : `${title} — ${siteName}`;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -98,8 +98,8 @@ const navLinks = [
     <!-- Header padrão inline para evitar import circular -->
     <header class="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm">
       <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        <a href={base} class="flex items-center gap-2 font-extrabold text-lg text-primary-700 hover:text-primary-900 transition-colors" aria-label="EduConecta — página inicial">
-          <span aria-hidden="true">🎓</span> EduConecta
+        <a href={base} class="flex items-center gap-2 font-extrabold text-lg text-primary-700 hover:text-primary-900 transition-colors" aria-label="Educação Acessível — página inicial">
+          <span aria-hidden="true">🎓</span> Educação Acessível
         </a>
 
         <!-- Desktop nav -->
@@ -169,11 +169,11 @@ const navLinks = [
   <footer class="bg-gray-50 border-t border-gray-200 mt-auto">
     <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
       <p>
-        © {new Date().getFullYear()} EduConecta —
+        © {new Date().getFullYear()} Educação Acessível —
         <a href={`${base}/sobre`} class="hover:text-primary-600 transition-colors">Sobre o projeto</a>
       </p>
       <a
-        href="https://github.com/GuilhermeAdeLima/EduConecta"
+        href="https://github.com/GuilhermeAdeLima/Educacao-Acessivel"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-1.5 hover:text-primary-600 transition-colors"

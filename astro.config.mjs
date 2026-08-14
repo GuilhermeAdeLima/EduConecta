@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://guilhermeadelima.github.io',
-  base: '/EduConecta',
+  base: '/Educacao-Acessivel',
   integrations: [
     tailwind(),
     sitemap(),

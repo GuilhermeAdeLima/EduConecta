@@ -1,4 +1,4 @@
-# EduConecta
+# Educação Acessível
 
 Plataforma web gratuita que centraliza recursos educacionais para estudantes
 da educação básica, com foco em acessibilidade e simplicidade.

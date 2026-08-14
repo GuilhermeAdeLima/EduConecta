@@ -51,4 +51,4 @@ Reconheça cada conquista, por menor que seja. Terminou uma aula? Ótimo. Entend
 
 ---
 
-Com consistência e as ferramentas certas, você pode aprender o que quiser. Os recursos do EduConecta estão aqui para te ajudar nessa jornada!
+Com consistência e as ferramentas certas, você pode aprender o que quiser. Os recursos da Educação Acessível estão aqui para te ajudar nessa jornada!
